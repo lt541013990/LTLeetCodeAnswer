@@ -14,6 +14,7 @@
 		8EADEF072000BA7D0074FA43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EADEF052000BA7D0074FA43 /* LaunchScreen.storyboard */; };
 		8EADEF122000BA7D0074FA43 /* LTLeetCodeAnswerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADEF112000BA7D0074FA43 /* LTLeetCodeAnswerTests.swift */; };
 		8EADEF1D2000BA7D0074FA43 /* LTLeetCodeAnswerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADEF1C2000BA7D0074FA43 /* LTLeetCodeAnswerUITests.swift */; };
+		8EADEF2C2000C1200074FA43 /* EasyAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EADEF2B2000C1200074FA43 /* EasyAnswer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		8EADEF182000BA7D0074FA43 /* LTLeetCodeAnswerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTLeetCodeAnswerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EADEF1C2000BA7D0074FA43 /* LTLeetCodeAnswerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTLeetCodeAnswerUITests.swift; sourceTree = "<group>"; };
 		8EADEF1E2000BA7D0074FA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EADEF2B2000C1200074FA43 /* EasyAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyAnswer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		8EADEEFB2000BA7D0074FA43 /* LTLeetCodeAnswer */ = {
 			isa = PBXGroup;
 			children = (
+				8EADEF2A2000C05F0074FA43 /* Easy */,
 				8EADEEFC2000BA7D0074FA43 /* AppDelegate.swift */,
 				8EADEEFE2000BA7D0074FA43 /* ViewController.swift */,
 				8EADEF002000BA7D0074FA43 /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				8EADEF1E2000BA7D0074FA43 /* Info.plist */,
 			);
 			path = LTLeetCodeAnswerUITests;
+			sourceTree = "<group>";
+		};
+		8EADEF2A2000C05F0074FA43 /* Easy */ = {
+			isa = PBXGroup;
+			children = (
+				8EADEF2B2000C1200074FA43 /* EasyAnswer.swift */,
+			);
+			path = Easy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EADEEFF2000BA7D0074FA43 /* ViewController.swift in Sources */,
+				8EADEF2C2000C1200074FA43 /* EasyAnswer.swift in Sources */,
 				8EADEEFD2000BA7D0074FA43 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
