@@ -12,7 +12,7 @@ class EasyAnswer: NSObject {
     
     // MARK: - 1.Two Sum
     func execTowSumSolution() {
-        let result = isPalindrome(-1)
+        let result = isValid2("([])")
         print(result)
     }
     
@@ -42,7 +42,7 @@ class EasyAnswer: NSObject {
         return [0, 0]
     }
     
-    // MARK: -9.Palindrome Number
+    // MARK: - 9.Palindrome Number
    
     func isPalindrome(_ x: Int) -> Bool {
         
@@ -99,6 +99,42 @@ class EasyAnswer: NSObject {
             return x == y
         }
         
+    }
+    
+    // MARK: - Valid Parentheses
+    
+    // answer1: 我滴龟龟 效率是最慢滴 只击败了百分之1的小伙伴
+    func isValid(_ s: String) -> Bool {
+        var length = Int(s.count)
+        guard length % 2 == 0 else {
+            return false
+        }
+        
+        var value = s.replacingOccurrences(of: "()", with: "").replacingOccurrences(of: "[]", with: "").replacingOccurrences(of: "{}", with: "")
+        
+        while length != Int(value.count) {
+            length = Int(value.count)
+            value = value.replacingOccurrences(of: "()", with: "").replacingOccurrences(of: "[]", with: "").replacingOccurrences(of: "{}", with: "")
+        }
+        
+        return Int(value.count) == 0
+    }
+    
+    // answer2
+    func isValid2(_ s: String) -> Bool {
+        var stack = [Character]()
+        let dic: [Character: Character] = ["}": "{", "]": "[", ")": "("]
+        
+        let chars = dic.values
+        for c in s {
+            if chars.contains(c) {
+                stack.append(c)
+            } else if dic[c] != stack.popLast(){
+                return false
+            }
+        }
+        
+        return stack.isEmpty
     }
     
 }
