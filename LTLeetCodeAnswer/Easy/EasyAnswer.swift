@@ -151,7 +151,7 @@ class EasyAnswer: NSObject {
 
 // MARK: 21. Merge Two Sorted Lists
 
-// answer1:  24ms  击败了百分百的小伙伴 我就问 还有谁！！！ 好吧 代码太臭太长了
+
 extension EasyAnswer {
     public class ListNode {
         public var val: Int
@@ -161,14 +161,13 @@ extension EasyAnswer {
             self.next = nil
         }
     }
-    
+    // answer1:  24ms  击败了百分百的小伙伴 我就问 还有谁！！！ 好吧 代码太臭太长了
     func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         
         var l1 = l1
         var l2 = l2
         
         var resultNode: ListNode?
-        
         
         if l1 == nil, l2 != nil {
             resultNode = ListNode.init(l2!.val)
@@ -179,9 +178,11 @@ extension EasyAnswer {
         } else if l1 != nil && l2 != nil {
             
             if l1!.val < l2!.val {
+                
                 resultNode = ListNode.init(l1!.val)
                 l1 = l1?.next
             } else {
+                
                 resultNode = ListNode.init(l2!.val)
                 l2 = l2?.next
             }
@@ -195,33 +196,88 @@ extension EasyAnswer {
             if l1 == nil, l2 != nil {
                 
                 node?.next = l2
-                
                 break
-                
             } else if l2 == nil, l1 != nil {
                 
                 node?.next = l1
-                
                 break
-                
             } else if l1 != nil && l2 != nil {
                 
                 if l1!.val < l2!.val {
                     
                     node?.next = ListNode.init(l1!.val)
                     l1 = l1?.next
-                    
                 } else {
                     
                     node?.next = ListNode.init(l2!.val)
                     l2 = l2?.next
-                    
                 }
-                
             }
             node = node?.next
         }
         
         return resultNode
     }
+
+    // answer2: 24 or 20 ms 来自剑哥大佬的思路
+    func mergeTwoLists2(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        
+        guard let l1 = l1 else {
+            return l2
+        }
+        
+        guard let l2 = l2 else {
+            return l1
+        }
+        
+        // find first node
+        let firstNode: ListNode = l1.val < l2.val ? l1 : l2
+        var targetNode: ListNode? = l1.val < l2.val ? l2 : l1
+        
+        var baseNode = firstNode
+        
+        while targetNode != nil {
+            
+            // find insert node
+            while baseNode.next != nil, baseNode.next!.val < targetNode!.val {
+                baseNode = baseNode.next!
+            }
+            
+            // insert target node
+            let nextDealNode = targetNode?.next
+            targetNode?.next = baseNode.next
+            baseNode.next = targetNode
+            baseNode = targetNode!
+            
+            // deal next target node
+            targetNode = nextDealNode
+        }
+        
+        return firstNode
+    }
+}
+
+
+// MARK: 26. Remove Duplicates from Sorted Array
+extension EasyAnswer {
+    
+    // 44 ms  beat 64%
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+        
+        guard nums.count > 1 else {
+            return nums.count
+        }
+        
+        var i = 1
+        
+        for index in 1 ... nums.count - 1 {
+            let currentNum = nums[index]
+            if currentNum != nums[index - 1] {
+                nums[i] = currentNum
+                i = i + 1
+            }
+        }
+        return i
+    }
+    
 }
