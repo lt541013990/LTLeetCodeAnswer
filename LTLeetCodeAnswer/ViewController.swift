@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let answer = EasyAnswer()
-        answer.execTowSumSolution()
+        answer.execSolution()
     }
 
     override func didReceiveMemoryWarning() {
