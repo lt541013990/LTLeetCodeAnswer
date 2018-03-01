@@ -12,16 +12,9 @@ class EasyAnswer: NSObject {
     
     
     func execSolution() {
-        let node1 = ListNode.init(1)
-        node1.next = ListNode.init(2)
-        node1.next?.next = ListNode.init(5)
-        
-        let node2 = ListNode.init(3)
-        node2.next = ListNode.init(4)
-        node2.next?.next = ListNode.init(6)
-        
-        let resultNode = mergeTwoLists(node1, node2)
-        
+        let nums = [1,3,5,6]
+        let target = 2
+        print(searchInsert(nums, target))
     }
     
     // MARK: - 1.Two Sum
@@ -278,6 +271,54 @@ extension EasyAnswer {
             }
         }
         return i
+    }
+    
+}
+
+// MARK: 27. Remove Element
+extension EasyAnswer {
+    // 12ms beat 95%
+    func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+        var i = 0
+        for index in 0 ..< nums.count {
+            let curNum = nums[index]
+            if curNum != val {
+                nums[i] = curNum
+                i += 1
+            }
+        }
+        return i
+    }
+}
+
+// MARK: 28. Implement strStr()
+extension EasyAnswer {
+    
+    func strStr(_ haystack: String, _ needle: String) -> Int {
+        
+        if let range = haystack.range(of: needle) {
+            return range.lowerBound.encodedOffset
+        } else {
+            return -1
+        }
+    }
+    
+}
+
+// MARK: 35. Search Insert Position
+extension EasyAnswer {
+    
+    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+        
+        for index in 0 ..< nums.count {
+            
+            if target <= nums[index] {
+                return index
+            }
+            
+        }
+        
+        return nums.count
     }
     
 }
