@@ -322,3 +322,63 @@ extension EasyAnswer {
     }
     
 }
+
+// MARK: 53. Maximum Subarray
+extension EasyAnswer {
+    
+    func maxSubArray(_ nums: [Int]) -> Int {
+        
+        guard nums.count > 0 else {
+            return 0
+        }
+        
+        var max = nums[0]
+        var sum = nums[0]
+        
+        for index in 1 ..< nums.count {
+            
+            if sum < 0 {
+                sum = nums[index]
+            } else {
+                sum += nums[index]
+            }
+            max = max > sum ? max : sum
+        }
+        return max
+    }
+    
+}
+
+// MARK: 128. Plus One
+extension EasyAnswer {
+    
+    func plusOne(_ digits: [Int]) -> [Int] {
+        
+        guard  digits.count > 0 else {
+            return digits
+        }
+        var digits = digits
+        var needPlus = true
+        var index = digits.count - 1
+        
+        while needPlus == true {
+            digits[index] += 1
+            if digits[index] == 10 {
+                digits[index] = 0
+                needPlus = true
+                
+                if index == 0 {
+                    needPlus = false
+                    digits.insert(1, at: 0)
+                }
+                
+                index -= 1
+            } else {
+                needPlus = false
+            }
+        }
+
+        return digits
+    }
+    
+}
