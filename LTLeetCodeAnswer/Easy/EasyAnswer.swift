@@ -349,6 +349,83 @@ extension EasyAnswer {
     
 }
 
+// MARK: 69. Sqrt(x)
+extension EasyAnswer {
+    // answer1 188ms beats 12.73%
+    func mySqrt(_ x: Int) -> Int {
+        
+        guard x > 1 else {
+            if x == 0 {
+                return 0
+            }
+            return 1
+        }
+        
+        var num = 1
+        
+        while num * num <= x {
+            num += 1
+        }
+        
+        return num - 1
+    }
+    // answer2 24ms
+    func mySqrt1(_ x: Int) -> Int {
+    
+        guard x > 1 else {
+            return x
+        }
+        
+        var left = 0
+        var right = x
+        
+        while left < right - 1 {
+            
+            let middle = (left + right) / 2
+            let middle_d = middle * middle
+            if middle_d == x {
+                return middle
+            } else if middle_d < x {
+                left = middle
+            } else {
+                right = middle
+            }
+            
+        }
+        return left
+    }
+}
+
+// MARK: 70. Climbing Stairs
+extension EasyAnswer {
+    
+    func climbStairs(_ n: Int) -> Int {
+        
+        guard n != 1 else {
+            return 1
+        }
+        
+        guard n != 2 else {
+            return 2
+        }
+        
+        var oneStepBefore = 2
+        var twoStepBefore = 1
+        var allWays = 0
+        
+        for _ in 2 ..< n {
+            
+            allWays = oneStepBefore + twoStepBefore
+            twoStepBefore = oneStepBefore
+            oneStepBefore = allWays
+            
+        }
+        return allWays
+        
+    }
+    
+}
+
 // MARK: 128. Plus One
 extension EasyAnswer {
     
