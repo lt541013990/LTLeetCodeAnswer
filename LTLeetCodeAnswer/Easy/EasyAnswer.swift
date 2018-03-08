@@ -12,9 +12,9 @@ class EasyAnswer: NSObject {
     
     
     func execSolution() {
-        let nums = [1,3,5,6]
-        let target = 2
-        print(searchInsert(nums, target))
+        var nums = [1,3,5,6]
+        merge(&nums, 4, [4], 1)
+        print(nums)
     }
     
     // MARK: - 1.Two Sum
@@ -421,6 +421,92 @@ extension EasyAnswer {
             
         }
         return allWays
+        
+    }
+    
+}
+
+// MARK: 88. Merge Sorted Array
+extension EasyAnswer {
+    // 这个题目 的输入有点问题 [1,0] 1  [2] 1  差评!!!
+    func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
+        
+        if n == 0 {
+            return
+        }
+        
+        if m == 0 {
+            nums1 = nums2
+            return
+        }
+        
+
+        var m = m - 1
+        
+        for index in (0 ... n - 1).reversed() {
+            
+            while nums1[m] > nums2[index] && m != 0 {
+                m -= 1
+            }
+            nums1.insert(nums2[index], at: m == 0 ? 0 : m + 1)
+            
+        }
+        
+    }
+    
+}
+
+// MARK: 101. Symmetric Tree
+extension EasyAnswer {
+    
+    public class TreeNode {
+        public var val: Int
+        public var left: TreeNode?
+        public var right: TreeNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.left = nil
+            self.right = nil
+        }
+    }
+    
+    func isSymmetric(_ root: TreeNode?) -> Bool {
+        
+        func isMirror(_ t1: TreeNode?, _ t2: TreeNode?) -> Bool {
+            
+            if t1 == nil, t2 == nil {
+                return true
+            } else if t1 == nil || t2 == nil {
+                return false
+            }
+            
+            return t1?.val == t2?.val && isMirror(t1?.left, t2?.right) && isMirror(t1?.right, t2?.left)
+            
+        }
+        
+        return isMirror(root, root)
+    }
+    
+    // MARK: 104. Maximum Depth of Binary Tree
+    // 24 ms beat 100%
+    func maxDepth(_ root: TreeNode?) -> Int {
+        
+        func maxDepth(_ root: TreeNode?, _ depth: Int) -> Int {
+            
+            if root == nil {
+                return depth
+            }
+            let depth = depth + 1
+            
+            return max(maxDepth(root?.left, depth), maxDepth(root?.right, depth))
+        }
+        
+        return maxDepth(root, 0)
+        
+    }
+    
+    // MARK: 108. Convert Sorted Array to Binary Search Tree
+    func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
         
     }
     
