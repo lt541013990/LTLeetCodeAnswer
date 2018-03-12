@@ -508,6 +508,27 @@ extension EasyAnswer {
     // MARK: 108. Convert Sorted Array to Binary Search Tree
     func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
         
+        guard nums.count != 0 else {
+            return nil
+        }
+        
+        func helper(_ nums: [Int], _ left: Int, _ right: Int) -> TreeNode? {
+            
+            guard left <= right else {
+                return nil
+            }
+            
+            let mid = (left + right) / 2
+            let midNode = TreeNode(nums[mid])
+            
+            midNode.left = helper(nums, left, mid - 1)
+            midNode.right = helper(nums, mid + 1, right)
+            
+            return midNode
+        }
+        
+        return helper(nums, 0, nums.count - 1)
+        
     }
     
 }
