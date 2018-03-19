@@ -566,3 +566,47 @@ extension EasyAnswer {
     }
     
 }
+
+// MARK: 136. Single Number
+extension EasyAnswer {
+    // 位运算 可以完美解决 通过异或操作
+    class Solution {
+        func singleNumber(_ nums: [Int]) -> Int {
+            
+            var single = 0
+            
+            for i in 0 ..< nums.count {
+                single ^= nums[i]
+            }
+            
+            return single
+        }
+    }
+    
+}
+
+extension EasyAnswer {
+    
+    public class SingleTreeNode: NSObject{
+        public var val: Int
+        public var next: SingleTreeNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.next = nil
+        }
+    }
+    
+    func hasCircle(_ node: SingleTreeNode?) -> Bool {
+        
+        var curNode: SingleTreeNode? = node
+        
+        while curNode != nil {
+            curNode = curNode?.next
+            if curNode == node {
+                return true
+            }
+        }
+        return false
+    }
+    
+}
