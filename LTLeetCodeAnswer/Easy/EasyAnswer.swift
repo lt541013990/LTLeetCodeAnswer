@@ -12,9 +12,8 @@ class EasyAnswer: NSObject {
     
     
     func execSolution() {
-        var nums = [1,3,5,6]
-        merge(&nums, 4, [4], 1)
-        print(nums)
+
+        print(0 - INT16_MIN)
     }
     
     // MARK: - 1.Two Sum
@@ -595,7 +594,7 @@ extension EasyAnswer {
             self.next = nil
         }
     }
-    
+    // MARK:     141 Linked List Cycle
     func hasCircle(_ node: SingleTreeNode?) -> Bool {
         
         var curNode: SingleTreeNode? = node
@@ -607,6 +606,75 @@ extension EasyAnswer {
             }
         }
         return false
+    }
+    
+    // MAKR: 160. Intersection of Two Linked Lists
+    // a+c + b+c = b+c + a+c  保证了终点相同
+    func getIntersectionNode(_ node1: SingleTreeNode?, _ node2: SingleTreeNode?) -> SingleTreeNode? {
+        
+        guard node1 != nil && node2 != nil else {
+            return nil
+        }
+        
+        var l1 = node1
+        var l2 = node2
+        while l1 != l2 {
+            l1 = l1 == nil ? node2 : l1?.next
+            l2 = l2 == nil ? node1 : l2?.next
+        }
+        return l1
+    }
+    
+}
+
+// MARK: 155. Min Stack
+extension EasyAnswer {
+
+    public class MinStack: NSObject {
+        
+        public var stackArray: [Int]
+        
+        public override init() {
+            stackArray = [Int]()
+        }
+        
+        func push(_ value: Int) {
+            stackArray.append(value)
+        }
+        
+        func pop() -> Int? {
+            return stackArray.popLast()
+        }
+        
+        func top() -> Int? {
+            return stackArray.last
+        }
+        
+        func getMin() -> Int? {
+            guard stackArray.count > 0 else {
+                return nil
+            }
+            
+            var min = stackArray[0]
+            
+            for i in 1 ..< stackArray.count {
+                let cur = stackArray[i]
+                if cur < min {
+                    min = cur
+                }
+            }
+            return min
+        }
+        
+    }
+    
+}
+
+// MARK: 169. Majority Element
+extension EasyAnswer {
+    
+    func majorityElement(_ nums: [Int]) -> Int {
+        
     }
     
 }
