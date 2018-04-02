@@ -675,6 +675,21 @@ extension EasyAnswer {
     
     func majorityElement(_ nums: [Int]) -> Int {
         
+        var count = 0
+        var num = 0
+        
+        for i in 0 ..< nums.count {
+            if count == 0 {
+                num = nums[i]
+                count += 1
+            } else if nums[i] != num {
+                count -= 1
+            } else {
+                count += 1
+            }
+            
+        }
+        return num
     }
     
 }
