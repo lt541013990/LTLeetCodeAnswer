@@ -13,7 +13,7 @@ class EasyAnswer: NSObject {
     
     func execSolution() {
 
-        print(0 - INT16_MIN)
+        print(titleToNumber("AA"))
     }
     
     // MARK: - 1.Two Sum
@@ -690,6 +690,34 @@ extension EasyAnswer {
             
         }
         return num
+    }
+    
+}
+
+// MARK: 171. Excel Sheet Column Number
+extension EasyAnswer {
+    // answer1 32ms
+    func titleToNumber(_ s: String) -> Int {
+        
+        var result = 0
+        
+        for (i, c) in s.enumerated().reversed() {
+            let num: UInt32 = UnicodeScalar(c.description)!.value - UnicodeScalar("A")!.value + 1
+            result = result + Int(pow(26.0, Double(s.count - 1 - i)) * Double(num))
+        }
+        
+        return result
+    }
+    
+    // answer2
+    func titleToNumber2(_ s: String) -> Int {
+        
+        var sum = 0
+        for c in s.unicodeScalars {
+            sum *= 26
+            sum += (Int(c.value) - 65 + 1)
+        }
+        return sum
     }
     
 }
