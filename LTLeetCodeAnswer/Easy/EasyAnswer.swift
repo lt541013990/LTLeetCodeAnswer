@@ -13,7 +13,7 @@ class EasyAnswer: NSObject {
     
     func execSolution() {
 
-        print(titleToNumber("AA"))
+        print(divide(10, 3))
     }
     
     // MARK: - 1.Two Sum
@@ -300,6 +300,37 @@ extension EasyAnswer {
         } else {
             return -1
         }
+    }
+    
+}
+
+// MARK: 29. Divide Two Integers
+extension EasyAnswer {
+    
+    func divide(_ dividend: Int, _ divisor: Int) -> Int {
+        
+        if divisor == 0 || (dividend == Int32.min && divisor == -1) {
+            return Int(Int32.max)
+        }
+        
+        let p = dividend * divisor < 0 ? -1 : 1
+        
+        var num = 0
+        var dvd = labs(dividend)
+        let dvs = labs(divisor)
+        
+        while dvd >= dvs {
+            var temp = dvs
+            var count = 1
+            while dvd > (temp << 1) {
+                count = count << 1
+                temp = temp << 1
+            }
+            dvd -= temp
+            num += count
+        }
+        
+        return num * p
     }
     
 }
@@ -627,7 +658,7 @@ extension EasyAnswer {
     
 }
 
-// MARK: 155. Min Stack
+// MARK: 155. Min Stack 这里建议用链表实现  用数组在自动扩容时 效率很低
 extension EasyAnswer {
 
     public class MinStack: NSObject {
